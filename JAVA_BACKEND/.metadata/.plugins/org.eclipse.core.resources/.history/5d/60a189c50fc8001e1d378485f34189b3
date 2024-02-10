@@ -1,0 +1,13 @@
+package com.backend.safarnama;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SafarnamaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SafarnamaApplication.class, args);
+	}
+
+}

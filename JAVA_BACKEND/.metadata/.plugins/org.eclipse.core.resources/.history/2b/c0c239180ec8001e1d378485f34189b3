@@ -1,0 +1,5 @@
+package com.backend.safarnama.repository;
+
+public interface BookedRoomRepository {
+
+}

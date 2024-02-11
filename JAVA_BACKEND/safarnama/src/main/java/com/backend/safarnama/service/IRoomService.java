@@ -14,10 +14,14 @@ import com.backend.safarnama.response.RoomResponse;
 
 public interface IRoomService {
 
-	Room addNewRoom(MultipartFile photo, String roomNO, String roomType, double roomPrice, int capacity) throws IOException, SerialException, SQLException;
+	Room addNewRoom(MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity) throws IOException, SerialException, SQLException;
 
 	List<String> getAllRoomTypes();
 
 	List<RoomResponse>getAllRooms();
+
+	void deleteRoom(Long roomId);
+
+	RoomResponse getRoomById(Long roomId);
 
 }

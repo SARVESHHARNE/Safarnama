@@ -6,9 +6,13 @@ import java.sql.SQLException;
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +37,8 @@ public class RoomController {
 	private final IBookedRoomServices bookedRoomServices;
 
 	@PostMapping("/add/room")
-	public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNO,@RequestParam("capacity")int capacity) throws SerialException, IOException, SQLException{
-			Room savedRoom = roomService.addNewRoom(photo,roomNO,roomType,roomPrice,capacity);
+	public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity) throws SerialException, IOException, SQLException{
+			Room savedRoom = roomService.addNewRoom(photo,roomNo,roomType,roomPrice,capacity);
 			RoomResponse response =new RoomResponse(savedRoom.getId(), savedRoom.getRoomNo(), savedRoom.getRoomType(), savedRoom.getRoomPrice(), savedRoom.getCapacity());
 			return ResponseEntity.ok(response);
 	}
@@ -47,6 +51,17 @@ public class RoomController {
 	@GetMapping("/all-rooms")
 	public ResponseEntity<?> getAllRooms() {
 		return ResponseEntity.ok(roomService.getAllRooms());
+	}
+	
+	@DeleteMapping("/delete/{roomId}")
+	public ResponseEntity<Void> deleteRoom(@PathVariable Long roomId){
+		roomService.deleteRoom(roomId);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/details/{roomId}")
+	public ResponseEntity<?> getRoomById(@PathVariable Long roomId) {
+		return ResponseEntity.ok(roomService.getRoomById(roomId));
 	}
 	
 	

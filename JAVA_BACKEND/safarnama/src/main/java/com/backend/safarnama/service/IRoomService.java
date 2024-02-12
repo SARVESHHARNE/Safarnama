@@ -24,4 +24,6 @@ public interface IRoomService {
 
 	RoomResponse getRoomById(Long roomId);
 
+	Room updateRoom(Long roomId, MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity) throws SerialException, SQLException, IOException;
+
 }

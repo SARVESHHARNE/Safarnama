@@ -110,4 +110,23 @@ public class RoomServiceImpl implements IRoomService {
 		return roomResponse;
 	}
 
+	@Override
+	public Room updateRoom(Long roomId, MultipartFile photo, String roomNo, String roomType, double roomPrice,
+			int capacity) throws SerialException, SQLException, IOException {
+		Room room =new Room();
+		room.setId(roomId);
+		room.setRoomNo(roomNo);
+		room.setRoomType(roomType);
+		room.setRoomPrice(roomPrice);
+		room.setCapacity(capacity);
+		if(!photo.isEmpty()) {
+			byte[] photoBytes=photo.getBytes();
+			Blob photoBlob = new SerialBlob(photoBytes);
+			room.setPhoto(photoBlob);
+		}
+	
+		return roomRepository.save(room);
+	}
+
+
 }

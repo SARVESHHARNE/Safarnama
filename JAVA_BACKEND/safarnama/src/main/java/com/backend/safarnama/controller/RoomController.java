@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +64,13 @@ public class RoomController {
 	@GetMapping("/details/{roomId}")
 	public ResponseEntity<?> getRoomById(@PathVariable Long roomId) {
 		return ResponseEntity.ok(roomService.getRoomById(roomId));
+	}
+	
+	@PutMapping("/update/{roomId}")
+	public ResponseEntity<?> updateRoom(@PathVariable Long roomId,@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity) throws SerialException, IOException, SQLException{
+		Room req = roomService.updateRoom(roomId, photo,roomNo,roomType,roomPrice,capacity);
+		RoomResponse response =new RoomResponse(req.getId(), req.getRoomNo(), req.getRoomType(), req.getRoomPrice(), req.getCapacity());
+		return ResponseEntity.ok(response);
 	}
 	
 	

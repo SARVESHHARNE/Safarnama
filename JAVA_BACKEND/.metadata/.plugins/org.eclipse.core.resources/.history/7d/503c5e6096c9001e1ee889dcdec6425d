@@ -1,0 +1,5 @@
+package com.backend.safarnama.response;
+
+public class HotelResponse {
+
+}

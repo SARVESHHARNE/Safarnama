@@ -1,0 +1,13 @@
+package com.backend.safarnama.service;
+
+public interface IHotelService {
+
+	void deleteHotel(Long hotelId);
+
+	Object getAllHotels();
+
+	Object getAllHotelCitys();
+
+	Object getHotelById(Long hotelId);
+
+}

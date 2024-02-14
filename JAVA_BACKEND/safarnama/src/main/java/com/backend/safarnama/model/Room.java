@@ -7,12 +7,15 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +30,7 @@ public class Room {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String roomNo;
 	private String roomType;
 	private double roomPrice;
@@ -34,6 +38,10 @@ public class Room {
 	private boolean isBooked=false;
 	@Lob
 	private Blob photo;
+	
+	@ManyToOne
+	@JoinColumn(name = "hotel_id")
+	private Hotel hotel;
 	
 	@OneToMany(mappedBy = "room",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<BookedRoom> bookings;

@@ -1,0 +1,17 @@
+package com.backend.safarnama.response;
+
+import java.sql.Blob;
+import java.util.List;
+
+public class HotelResponse {
+	private Long id;
+	private String name;
+	private String contactNo;
+	private String email;
+	private String street;
+	private String city;
+	private String state;
+	private String image;
+	
+	List<RoomResponse> rooms;
+}

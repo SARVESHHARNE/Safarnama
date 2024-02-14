@@ -1,0 +1,30 @@
+package com.backend.safarnama.model;
+
+import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+
+public class Hotel {
+	
+	private Long id;
+	private String name;
+	private String contactNo;
+	private String email;
+	private String street;
+	private String city;
+	private String state;
+	private Blob image;
+	
+	@OneToMany(mappedBy = "hotel",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Room> rooms;
+
+	public Hotel() {
+		this.bookings=new ArrayList<>();
+	}
+	
+
+}

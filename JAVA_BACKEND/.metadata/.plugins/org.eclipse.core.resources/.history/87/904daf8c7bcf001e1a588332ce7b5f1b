@@ -1,0 +1,30 @@
+package com.backend.safarnama.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.backend.safarnama.repository.PackageReository;
+import com.backend.safarnama.repository.RoomRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class PackageServiceImpl implements IPackageService {
+	
+	@Autowired
+	private final PackageReository packageReository;
+	@Autowired
+	private final ModelMapper mapper;
+
+	@Override
+	public  getPackages() {
+		
+		return null;
+	}
+
+}

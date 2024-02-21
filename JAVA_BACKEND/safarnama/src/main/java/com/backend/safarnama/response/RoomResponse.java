@@ -22,7 +22,7 @@ public class RoomResponse {
 	private boolean isBooked=false;
 	private String photo;
 	
-	private HotelResponse hotel;
+	private Long hotelId;
 	
 	private List<BookingResponse> bookings;
 
@@ -36,7 +36,7 @@ public class RoomResponse {
 	}
 
 	public RoomResponse(Long id, String roomNo, String roomType, double roomPrice, int capacity, boolean isBooked,
-			byte[] photo, List<BookingResponse> bookings,HotelResponse hotel) {
+			byte[] photo, List<BookingResponse> bookings,Long hotel) {
 		super();
 		this.id = id;
 		this.roomNo = roomNo;
@@ -46,7 +46,7 @@ public class RoomResponse {
 		this.isBooked = isBooked;
 		this.photo = photo!=null?Base64.encodeBase64String(photo):null;
 		this.bookings = bookings;
-		this.hotel=hotel;
+		this.hotelId=hotel;
 	}
 	
 }

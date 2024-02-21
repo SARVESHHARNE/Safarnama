@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.backend.safarnama.model.Hotel;
 import com.backend.safarnama.model.Room;
 import com.backend.safarnama.response.RoomResponse;
 import com.backend.safarnama.service.IBookedRoomServices;
@@ -39,8 +40,8 @@ public class RoomController {
 	private final IBookedRoomServices bookedRoomServices;
 
 	@PostMapping("/add/room")
-	public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity) throws SerialException, IOException, SQLException{
-			Room savedRoom = roomService.addNewRoom(photo,roomNo,roomType,roomPrice,capacity);
+	public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity,@RequestParam("hotelId")Long hotelId) throws SerialException, IOException, SQLException{
+			Room savedRoom = roomService.addNewRoom(photo,roomNo,roomType,roomPrice,capacity,hotelId);
 			RoomResponse response =new RoomResponse(savedRoom.getId(), savedRoom.getRoomNo(), savedRoom.getRoomType(), savedRoom.getRoomPrice(), savedRoom.getCapacity());
 			return ResponseEntity.ok(response);
 	}
@@ -66,9 +67,14 @@ public class RoomController {
 		return ResponseEntity.ok(roomService.getRoomById(roomId));
 	}
 	
+	@GetMapping("/all-rooms/{hotelId}")
+	public ResponseEntity<?> getAllRoomById(@PathVariable Long hotelId) {
+		return ResponseEntity.ok(roomService.getAllRoomById(hotelId));
+	}
+	
 	@PutMapping("/update/{roomId}")
-	public ResponseEntity<?> updateRoom(@PathVariable Long roomId,@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity) throws SerialException, IOException, SQLException{
-		Room req = roomService.updateRoom(roomId, photo,roomNo,roomType,roomPrice,capacity);
+	public ResponseEntity<?> updateRoom(@PathVariable Long roomId,@RequestParam("photo")MultipartFile photo,@RequestParam("roomType")String roomType,@RequestParam("roomPrice")double roomPrice,@RequestParam("roomNo")String roomNo,@RequestParam("capacity")int capacity,@RequestParam("hotelId")Long hotelId) throws SerialException, IOException, SQLException{
+		Room req = roomService.updateRoom(roomId, photo,roomNo,roomType,roomPrice,capacity,hotelId);
 		RoomResponse response =new RoomResponse(req.getId(), req.getRoomNo(), req.getRoomType(), req.getRoomPrice(), req.getCapacity());
 		return ResponseEntity.ok(response);
 	}

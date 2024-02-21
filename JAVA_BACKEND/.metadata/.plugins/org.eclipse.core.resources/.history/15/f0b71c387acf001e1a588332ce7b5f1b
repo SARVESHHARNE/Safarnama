@@ -1,0 +1,32 @@
+package com.backend.safarnama.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.backend.safarnama.service.IBookedRoomServices;
+import com.backend.safarnama.service.IPackageService;
+import com.backend.safarnama.service.IRoomService;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/package")
+@CrossOrigin(origins = "http://localhost:3000")
+public class PackageController {
+	
+	@Autowired
+	private final IPackageService packageService;
+	
+	@GetMapping("/all-package")
+	public String getMethodName(@RequestParam String param) {
+		return new String();
+	}
+	
+	
+}

@@ -1,9 +1,0 @@
-package com.backend.safarnama.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.backend.safarnama.model.Room;
-
-public interface RoomRepository extends JpaRepository<Room, Long> {
-
-}

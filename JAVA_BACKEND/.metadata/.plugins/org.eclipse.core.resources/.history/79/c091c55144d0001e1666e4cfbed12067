@@ -1,0 +1,5 @@
+package com.backend.safarnama.userdetails;
+
+public class HotelInfoDetails {
+
+}

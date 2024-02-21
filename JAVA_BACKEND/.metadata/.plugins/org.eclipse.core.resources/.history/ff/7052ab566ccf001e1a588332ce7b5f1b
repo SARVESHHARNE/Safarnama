@@ -1,0 +1,6 @@
+package com.backend.safarnama.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PackageReository extends JpaRepository<Package, Long> {
+}

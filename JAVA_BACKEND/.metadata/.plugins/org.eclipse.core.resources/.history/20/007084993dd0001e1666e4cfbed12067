@@ -1,0 +1,5 @@
+package com.backend.safarnama.config;
+
+public class SecurityConfig {
+
+}

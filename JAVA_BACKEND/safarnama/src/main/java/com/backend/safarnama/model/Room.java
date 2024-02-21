@@ -39,8 +39,8 @@ public class Room {
 	@Lob
 	private Blob photo;
 	
-	@ManyToOne
-	@JoinColumn(name = "hotel_id")
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "hotel_id",nullable = false)
 	private Hotel hotel;
 	
 	@OneToMany(mappedBy = "room",fetch = FetchType.LAZY,cascade = CascadeType.ALL)

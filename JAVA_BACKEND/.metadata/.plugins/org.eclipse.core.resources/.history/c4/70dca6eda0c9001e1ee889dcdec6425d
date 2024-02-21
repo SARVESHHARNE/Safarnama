@@ -1,5 +1,0 @@
-package com.backend.safarnama.service;
-
-public class HotelServiceImpl implements IHotelService{
-
-}

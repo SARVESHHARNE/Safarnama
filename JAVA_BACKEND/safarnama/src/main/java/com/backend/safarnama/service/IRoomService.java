@@ -8,13 +8,12 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.backend.safarnama.model.Hotel;
 import com.backend.safarnama.model.Room;
 import com.backend.safarnama.response.BookingResponse;
 import com.backend.safarnama.response.RoomResponse;
 
 public interface IRoomService {
-
-	Room addNewRoom(MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity) throws IOException, SerialException, SQLException;
 
 	List<String> getAllRoomTypes();
 
@@ -24,6 +23,11 @@ public interface IRoomService {
 
 	RoomResponse getRoomById(Long roomId);
 
-	Room updateRoom(Long roomId, MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity) throws SerialException, SQLException, IOException;
+	Room updateRoom(Long roomId, MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity,Long hotelId) throws SerialException, SQLException, IOException;
+
+	List<RoomResponse> getAllRoomById(Long hotelId);
+
+	Room addNewRoom(MultipartFile photo, String roomNo, String roomType, double roomPrice, int capacity, Long hotelId)
+			throws IOException, SerialException, SQLException;
 
 }

@@ -40,7 +40,7 @@ public class Hotel {
 	@Column(nullable = false)
 	private String password;
 	
-	@OneToMany(mappedBy = "hotel",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hotel",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Room> rooms;
 
 	public Hotel() {

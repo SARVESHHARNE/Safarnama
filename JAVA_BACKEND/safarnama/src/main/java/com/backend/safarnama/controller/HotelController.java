@@ -42,7 +42,7 @@ public class HotelController {
 
 		@PostMapping("/add/hotel")
 		public ResponseEntity<HotelResponse> addNewHotel(@RequestParam("image")MultipartFile image,@RequestParam("name")String name,@RequestParam("contactNo")String contactNo,@RequestParam("email")String email,@RequestParam("street")String street,@RequestParam("city")String city,@RequestParam("state")String state,@RequestParam("password")String password) throws SerialException, IOException, SQLException{
-				Hotel savedHotel = hotelService.addNewHotel(image,name,contactNo,email,street, city,state ,password);
+				Hotel savedHotel = hotelService.addNewHotel(image,name,contactNo,email,street, city.toUpperCase(),state ,password);
 				HotelResponse response =new HotelResponse(savedHotel.getId(),savedHotel.getName(),savedHotel.getContactNo(),savedHotel.getEmail(),savedHotel.getStreet(),savedHotel.getCity(),savedHotel.getState(),savedHotel.getImage().getBytes(1,(int) savedHotel.getImage().length()),savedHotel.getRooms().stream().map(r->mapper.map(r,RoomResponse.class)).toList());
 				return ResponseEntity.ok(response);
 		}
@@ -64,7 +64,7 @@ public class HotelController {
 		}
 		
 		@GetMapping("/details/{hotelId}")
-		public ResponseEntity<?> getHotelById(@PathVariable Long hotelId) {
+		public ResponseEntity<?> getHotelById(@PathVariable Long hotelId) throws SQLException {
 			return ResponseEntity.ok(hotelService.getHotelById(hotelId));
 		}
 		
@@ -74,6 +74,13 @@ public class HotelController {
 //			HotelResponse response =new HotelResponse(req.getId(), req.getHotelType(), req.getHotelPrice(), req.getCapacity());
 //			return ResponseEntity.ok(response);
 //		}
+		
+		@PutMapping("/update/{hotelId}")
+		public ResponseEntity<?> uotelHotel(@PathVariable Long hotelId,@RequestParam("image")MultipartFile image,@RequestParam("name")String name,@RequestParam("contactNo")String contactNo,@RequestParam("email")String email,@RequestParam("street")String street,@RequestParam("city")String city,@RequestParam("state")String state,@RequestParam("password")String password) throws SerialException, IOException, SQLException{
+				Hotel savedHotel = hotelService.updateHotel(hotelId,image,name,contactNo,email,street, city.toUpperCase(),state ,password);
+				HotelResponse response =new HotelResponse(savedHotel.getId(),savedHotel.getName(),savedHotel.getContactNo(),savedHotel.getEmail(),savedHotel.getStreet(),savedHotel.getCity(),savedHotel.getState(),savedHotel.getImage().getBytes(1,(int) savedHotel.getImage().length()),savedHotel.getRooms().stream().map(r->mapper.map(r,RoomResponse.class)).toList());
+				return ResponseEntity.ok(response);
+		}
 		
 		
 	

@@ -1,0 +1,9 @@
+package com.backend.safarnama.service;
+
+import org.springframework.http.ResponseEntity;
+
+public interface IPackageService {
+
+	ResponseEntity<?> getPackages();
+
+}

@@ -17,9 +17,12 @@ public interface IHotelService {
 
 	Object getAllHotelCitys();
 
-	Object getHotelById(Long hotelId);
+	Object getHotelById(Long hotelId) throws SQLException;
 
 	Hotel addNewHotel(MultipartFile image, String name, String contactNo, String email, String street, String city,
 			String state, String password) throws SerialException, SQLException, IOException;
+
+	Hotel updateHotel(Long hotelId, MultipartFile image, String name, String contactNo, String email, String street,
+			String city, String state, String password) throws IOException, SerialException, SQLException;
 
 }
